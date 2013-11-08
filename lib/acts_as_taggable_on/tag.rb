@@ -3,6 +3,7 @@ module ActsAsTaggableOn
     include ActsAsTaggableOn::Utils
 
     attr_accessible :name if defined?(ActiveModel::MassAssignmentSecurity)
+    attr_accesible :locale
 
     ### ASSOCIATIONS:
 
@@ -51,7 +52,7 @@ module ActsAsTaggableOn
       if (ActsAsTaggableOn.strict_case_match)
         self.find_or_create_all_with_like_by_name([name]).first
       else
-        named_like(name).first || create(:name => name)
+        named_like(name).first || create(:name => name, :locale => "de")
       end
     end
 
