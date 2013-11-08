@@ -68,7 +68,7 @@ module ActsAsTaggableOn
         comparable_tag_name = comparable_name(tag_name)
         existing_tag = existing_tags.find { |tag| comparable_name(tag.name) == comparable_tag_name }
 
-        existing_tag || Tag.create(:name => tag_name)
+        existing_tag || Tag.create(:name => tag_name, :locale => "de")
       end
     end
 
