@@ -2,8 +2,8 @@ module ActsAsTaggableOn
   class Tag < ::ActiveRecord::Base
     include ActsAsTaggableOn::Utils
 
-    attr_accessible :name if defined?(ActiveModel::MassAssignmentSecurity)
-    attr_accesible :locale
+    attr_accessible :locale, :name if defined?(ActiveModel::MassAssignmentSecurity) 
+    
 
     ### ASSOCIATIONS:
 
@@ -52,7 +52,6 @@ module ActsAsTaggableOn
       if (ActsAsTaggableOn.strict_case_match)
         self.find_or_create_all_with_like_by_name([name]).first
       else
-        puts name
         named_like(name).first || create(:name => name, :locale => "de")
       end
     end
@@ -68,7 +67,7 @@ module ActsAsTaggableOn
         comparable_tag_name = comparable_name(tag_name)
         existing_tag = existing_tags.find { |tag| comparable_name(tag.name) == comparable_tag_name }
 
-        existing_tag || Tag.create(:name => tag_name, :locale => "de")
+        existing_tag || Tag.create(:name => "ABC", :locale => "de")
       end
     end
 
