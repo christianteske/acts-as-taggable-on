@@ -52,6 +52,7 @@ module ActsAsTaggableOn
       if (ActsAsTaggableOn.strict_case_match)
         self.find_or_create_all_with_like_by_name([name]).first
       else
+        puts name
         named_like(name).first || create(:name => name, :locale => "de")
       end
     end
